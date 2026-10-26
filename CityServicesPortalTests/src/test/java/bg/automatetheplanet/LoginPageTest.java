@@ -30,6 +30,6 @@ public class LoginPageTest {
         Assertions.assertEquals(
                 "Login", loginButtonText.getText(), "Incorrect Login button text!");
 
-       // driver.quit();
+       driver.quit();
     }
 }

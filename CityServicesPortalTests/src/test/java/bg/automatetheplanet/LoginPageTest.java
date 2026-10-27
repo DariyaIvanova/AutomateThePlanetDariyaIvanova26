@@ -20,7 +20,7 @@ public class LoginPageTest {
         driver.get("http://localhost:5173/login");
 
         WebElement loginPageHeading = driver.findElement(By.xpath("//div//h1[text()='City Services Login']"));
-        WebElement loginButtonText = driver.findElement(By.xpath("//button[text()='Login']"));
+        WebElement loginButtonText = driver.findElement(By.xpath("//button[@data-testid='cs-login-submit']"));
 
         // Verify login page heading
         Assertions.assertEquals(
@@ -28,7 +28,7 @@ public class LoginPageTest {
 
         // Verify Login button text
         Assertions.assertEquals(
-                "Login", loginButtonText.getText(), "Incorrect Login button text!");
+                "Login", loginButtonText.getText(), "BUG DETECTED: Login button has incorrect text!");
 
        driver.quit();
     }

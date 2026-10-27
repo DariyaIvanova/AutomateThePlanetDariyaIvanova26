@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Driver;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,137 +15,71 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserRolesTest {
 
     @Test
-    public void verifyCitizenDemoRole(){
-
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://localhost:5173/login");
-
-        WebElement citizenDemoLogin = driver.findElement(By.xpath("//button[@aria-label='Prefill login form with Citizen demo account credentials']"));
-        WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
-
-        citizenDemoLogin.click();
-        loginButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Изчаква до 10 секунди
-
-        WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@data-testid='cs-user-menu-button']"))); // Намира бутона след Login
-
-        userMenuButton.click();
-        WebElement userMenuRole = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
-
-        assertEquals("CITIZEN", userMenuRole.getText(), "Incorrect user role!");
-        driver.quit();
-
+    public void verifyCitizenDemoRole() {
+        verifyRole("Citizen", "CITIZEN");
     }
+
     @Test
-    public void verifyClerkDemoRole(){
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://localhost:5173/login");
-
-        WebElement clerkDemoLogin = driver.findElement(By.xpath("//button[@aria-label='Prefill login form with Clerk demo account credentials']"));
-        WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
-
-        clerkDemoLogin.click();
-        loginButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Изчаква до 10 секунди
-
-        WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@data-testid='cs-user-menu-button']"))); // Намира бутона след Login
-
-        userMenuButton.click();
-        WebElement userMenuRole = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
-
-        assertEquals("CLERK", userMenuRole.getText(), "Incorrect user role!");
-        driver.quit();
-
+    public void verifyClerkDemoRole() {
+        verifyRole("Clerk", "CLERK");
     }
+
     @Test
-    public void verifySupervisorDemoRole(){
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://localhost:5173/login");
-
-        WebElement clerkDemoLogin = driver.findElement(By.xpath("//button[@aria-label='Prefill login form with Supervisor demo account credentials']"));
-        WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
-
-        clerkDemoLogin.click();
-        loginButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Изчаква до 10 секунди
-
-        WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@data-testid='cs-user-menu-button']"))); // Намира бутона след Login
-
-        userMenuButton.click();
-        WebElement userMenuRole = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
-
-        assertEquals("SUPERVISOR", userMenuRole.getText(), "Incorrect user role!");
-        driver.quit();
-
-
+    public void verifySupervisorDemoRole() {
+        verifyRole("Supervisor", "SUPERVISOR");
     }
+
     @Test
-    public void verifyFieldAgentDemoRole(){
-
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://localhost:5173/login");
-
-        WebElement clerkDemoLogin = driver.findElement(By.xpath("//button[@aria-label='Prefill login form with Field Agent demo account credentials']"));
-        WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
-
-        clerkDemoLogin.click();
-        loginButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Изчаква до 10 секунди
-
-        WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@data-testid='cs-user-menu-button']"))); // Намира бутона след Login
-
-        userMenuButton.click();
-        WebElement userMenuRole = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
-
-        assertEquals("FIELD_AGENT", userMenuRole.getText(), "Incorrect user role!");
-        driver.quit();
-
+    public void verifyFieldAgentDemoRole() {
+        verifyRole("Field Agent", "FIELD_AGENT");
     }
+
     @Test
-    public void verifyAdministratorDemoRole(){
+    public void verifyAdministratorDemoRole() {
+        verifyRole("Administrator", "ADMIN");
+    }
+
+    public void verifyRole(String demoRole, String expectedRole) {
 
         WebDriver driver = new ChromeDriver();
 
         driver.get("http://localhost:5173/login");
 
-        WebElement clerkDemoLogin = driver.findElement(By.xpath("//button[@aria-label='Prefill login form with Administrator demo account credentials']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement demoLogin = driver.findElement(By.xpath(
+                "//button[@aria-label='Prefill login form with "
+                        + demoRole + " demo account credentials']"
+        ));
+
+        demoLogin.click();
+
         WebElement loginButton = driver.findElement(By.xpath("//button[text()='Login']"));
 
-        clerkDemoLogin.click();
         loginButton.click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Изчаква до 10 секунди
-
-        WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//button[@data-testid='cs-user-menu-button']"))); // Намира бутона след Login
+        WebElement userMenuButton = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[@data-testid='cs-user-menu-button']")
+                )
+        );
 
         userMenuButton.click();
+
+        // Get current user role
         WebElement userMenuRole = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
+                        By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")
+                )
+        );
 
-        assertEquals("ADMIN", userMenuRole.getText(), "Incorrect user role!");
+        // Verify user role
+        assertEquals(
+                expectedRole,
+                userMenuRole.getText(),
+                "Incorrect user role!"
+        );
+
         driver.quit();
-
     }
 }

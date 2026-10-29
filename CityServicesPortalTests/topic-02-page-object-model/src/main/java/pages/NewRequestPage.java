@@ -66,10 +66,7 @@ public class NewRequestPage {
         driver.findElement(NEXT).click();
     }
 
-    public void submitRequest() {
-
-        driver.findElement(SUBMIT).click();
-    }
+    public void submitRequest() { driver.findElement(SUBMIT).click(); }
 
     public boolean isDisplayed() {
         return wait.until(

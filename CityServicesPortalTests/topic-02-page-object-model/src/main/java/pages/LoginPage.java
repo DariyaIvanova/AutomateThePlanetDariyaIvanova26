@@ -11,8 +11,8 @@ public class LoginPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    private final By EMAIL = By.xpath("//div[@data-testid='cs-login-email']");
-    private final By PASSWORD = By.xpath("//div[@data-testid='cs-login-password']");
+    private final By EMAIL = By.xpath("//div[@data-testid='cs-login-email']//input");
+    private final By PASSWORD = By.xpath("//div[@data-testid='cs-login-password']//input");
     private final By LOGIN_BUTTON = By.xpath("//button[@data-testid='cs-login-submit']");
     private final By ERROR_MESSAGE = By.xpath("//div[@data-testid='cs-login-error']");
     private final By LOGIN_PAGE_HEADING = By.xpath("//div//h1[text()='City Services Login']");

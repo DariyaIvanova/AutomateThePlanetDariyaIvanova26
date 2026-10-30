@@ -26,7 +26,7 @@ public class Header {
         this.wait = wait;
     }
 
-    public boolean isDisplayed(){return wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();}
+    //public boolean isDisplayed(){return wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();}
 
     private void click(By locator) {wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();}
 

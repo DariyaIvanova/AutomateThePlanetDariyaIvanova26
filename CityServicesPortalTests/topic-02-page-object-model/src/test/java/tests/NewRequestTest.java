@@ -32,7 +32,7 @@ public class NewRequestTest extends BaseTest {
                 .fillAdditionalDetails();
         newRequestPage
                 .submitRequest();
-        header.openNewRequests();
+        header.openMyRequests();
 
     }
 }

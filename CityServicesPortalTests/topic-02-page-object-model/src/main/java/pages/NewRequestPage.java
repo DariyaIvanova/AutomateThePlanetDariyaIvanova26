@@ -18,9 +18,8 @@ public class NewRequestPage {
 
     private final By TITLE = By.xpath("//*[@data-testid='cs-new-request-title']//input");
     private final By DESCRIPTION = By.xpath("//*[@data-testid='cs-new-request-description']//textarea");
-    private final By PUBLIC_SAFETY = By.xpath("//li[@data-value='public-safety']");
     private final By CATEGORY = By.xpath("//*[@data-testid='cs-new-request-category']");
-    private final By HIGH_PRIORITY = By.xpath("//*[@data-testid='cs-new-request-priority']//input[@value='HIGH']");
+    private final By HIGH_PRIORITY = By.xpath("//input[@name='priority' and @value='HIGH']/ancestor::label[1]");
     private final By STREET = By.xpath("//*[@data-testid='cs-new-request-street-address']//input");
     private final By CITY = By.xpath("//*[@data-testid='cs-new-request-city']//input");
     private final By POSTAL_CODE = By.xpath("//*[@data-testid='cs-new-request-postal-code']//input");
@@ -82,19 +81,19 @@ public class NewRequestPage {
         driver.findElement(BACK).click();
     }
 
-    public boolean isRequestSubmittedSuccessfully(){
-        return  wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS)).isDisplayed();
-     }
-
-    public String getSuccessMessage() {
-
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS)).getText();
-    }
-
-    public String getErrorMessage() {
-
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR)).getText();
-    }
+//    public boolean isRequestSubmittedSuccessfully() {
+//        return !driver.findElements(SUCCESS).isEmpty();
+//    }
+//
+//    public String getSuccessMessage() {
+//
+//        return wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS)).getText();
+//    }
+//
+//    public String getErrorMessage() {
+//
+//        return wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR)).getText();
+//    }
 
 
 }

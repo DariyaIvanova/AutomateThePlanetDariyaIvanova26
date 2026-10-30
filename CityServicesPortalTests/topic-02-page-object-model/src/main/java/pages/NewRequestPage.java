@@ -18,6 +18,7 @@ public class NewRequestPage {
 
     private final By TITLE = By.xpath("//*[@data-testid='cs-new-request-title']//input");
     private final By DESCRIPTION = By.xpath("//*[@data-testid='cs-new-request-description']//textarea");
+    private final By PUBLIC_SAFETY = By.xpath("//li[@data-value='public-safety']");
     private final By CATEGORY = By.xpath("//*[@data-testid='cs-new-request-category']");
     private final By HIGH_PRIORITY = By.xpath("//*[@data-testid='cs-new-request-priority']//input[@value='HIGH']");
     private final By STREET = By.xpath("//*[@data-testid='cs-new-request-street-address']//input");
@@ -39,7 +40,9 @@ public class NewRequestPage {
         driver.findElement(TITLE).sendKeys(title);
         driver.findElement(DESCRIPTION).sendKeys(description);
         driver.findElement(CATEGORY).click();
-        driver.findElement(By.xpath("//li[@data-value='" + category + "']")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//li[@data-value='" + category + "']")
+        )).click();
         driver.findElement(HIGH_PRIORITY).click();
         driver.findElement(NEXT).click();
     }

@@ -28,7 +28,7 @@ public class Header {
 
     //public boolean isDisplayed(){return wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();}
 
-    private void click(By locator) {wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();}
+    private void click(By locator) {wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();}
 
     public void logout(){
         click(USER_MENU_BUTTON);

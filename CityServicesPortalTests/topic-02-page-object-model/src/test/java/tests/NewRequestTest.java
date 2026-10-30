@@ -23,7 +23,7 @@ public class NewRequestTest extends BaseTest {
         String requestTitle = "Broken streetlight " + System.currentTimeMillis();
 
         newRequestPage
-                .fillBasicInformation(requestTitle, "Streetlight near the park is not working all the time.",  "Public Safety");
+                .fillBasicInformation(requestTitle, "Streetlight near the park is not working all the time.",  "public-safety");
         newRequestPage
                 .fillLocationDetails("197 Street", "Varna", "9000", "Near the main park entrance");
         newRequestPage

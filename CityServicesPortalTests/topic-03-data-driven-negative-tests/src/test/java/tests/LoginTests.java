@@ -49,7 +49,6 @@ public class LoginTests extends BaseTest {
 
         loginPage.login(email, "password123");
 
-
         wait.until(ExpectedConditions.urlToBe(expectedPage));
 
         // Verify user role

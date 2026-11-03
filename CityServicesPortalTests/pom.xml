@@ -12,6 +12,7 @@
     <modules>
         <module>topic-02-page-object-model</module>
         <module>topic-01-selenium-basics</module>
+        <module>topic-03-data-driven-negative-tests</module>
     </modules>
 
     <properties>

@@ -42,7 +42,7 @@ public class NewRequestPage {
         wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//li[@data-value='" + category + "']")
         )).click();
-        driver.findElement(HIGH_PRIORITY).click();
+        wait.until(ExpectedConditions.elementToBeClickable(HIGH_PRIORITY)).click();
         driver.findElement(NEXT).click();
     }
 
@@ -80,20 +80,4 @@ public class NewRequestPage {
 
         driver.findElement(BACK).click();
     }
-
-//    public boolean isRequestSubmittedSuccessfully() {
-//        return !driver.findElements(SUCCESS).isEmpty();
-//    }
-//
-//    public String getSuccessMessage() {
-//
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS)).getText();
-//    }
-//
-//    public String getErrorMessage() {
-//
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR)).getText();
-//    }
-
-
 }

@@ -15,6 +15,9 @@ public class RequestDetailsTest extends BaseTest {
     @Test
     public void createRequest_expectedCorrectDetails() {
 
+        // Създава Request
+        // Проверява Title, Priority, Status и Request ID
+
         // Arrange
         LoginPage loginPage = new LoginPage(driver, wait);
         Header header = new Header(driver, wait);
@@ -52,6 +55,7 @@ public class RequestDetailsTest extends BaseTest {
         newRequestPage.fillAdditionalDetails();
         newRequestPage.submitRequest();
 
+
         // Act - Open request from My Requests
         header.openMyRequests();
         myRequestsPage.openRequest(requestTitle);
@@ -83,6 +87,12 @@ public class RequestDetailsTest extends BaseTest {
 
     @Test
     public void addComment_expectedCommentPreservedAfterRefresh() {
+
+        // Създава Request
+        // Добавя коментар
+        // Refresh
+        // Проверява коментара
+
 
         // Arrange
         LoginPage loginPage = new LoginPage(driver, wait);

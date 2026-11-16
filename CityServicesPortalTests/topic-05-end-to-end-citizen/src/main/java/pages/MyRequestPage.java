@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyRequestPage {
 
     private final WebDriver driver;
@@ -19,6 +22,16 @@ public class MyRequestPage {
 
     private final By PRIORITY = By.xpath("(//div[@class='MuiBox-root css-1uthhvt']/div)[1]");
     private final By STATUS = By.xpath("(//div[@class='MuiBox-root css-1uthhvt']/div)[2]");
+    private final By PRIORITY_FILTER = By.xpath("//*[@data-testid='cs-requests-priority-filter']//*[@role='combobox']");
+    private final By PRIORITY_HIGH = By.xpath("//li[@role='option' and normalize-space(.)='High']");
+    private final By PRIORITY_CELLS = By.xpath("//div[@role='row' and @data-id]/div[@data-field='priority']");
+/*
+Намира клетка с data-field='priority'.
+С ancestor:: намира реда, в който се намира клетката.
+От този ред избира отново Priority клетката.
+ */
+
+
 
 
     public String getRequestStatus() {
@@ -35,6 +48,7 @@ public class MyRequestPage {
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(request));
     }
+
     public void openRequest(String title) {
 
         By REQUEST_TITLE = By.xpath("//*[normalize-space(text())='" + title + "']");
@@ -42,5 +56,32 @@ public class MyRequestPage {
         wait.until(ExpectedConditions.elementToBeClickable(REQUEST_TITLE)).click();
     }
 
-    public boolean isRequestDisplayed(String title) { return findRequest(title).isDisplayed();}
+    public void filterByHighPriority() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(PRIORITY_FILTER)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(PRIORITY_HIGH)).click();
+    }
+
+    public List<String> getRequestPriorities(){
+        /*
+        1. Намери всички редове в таблицата.
+        2. Прочете приоритета от всеки ред.
+        3. Върне списък от стойности като "High".
+        4.След това в теста ще проверим всяка стойност:
+         */
+
+        List<String> priorities = new ArrayList<>();
+
+        List<WebElement> elements = driver.findElements(PRIORITY_CELLS);
+
+        for (WebElement element : elements) {
+            priorities.add(element.getText());
+        }
+
+        return priorities;
+    }
+//
+//    public boolean isRequestDisplayed(String title) {
+//        return findRequest(title).isDisplayed();
+//    }
 }

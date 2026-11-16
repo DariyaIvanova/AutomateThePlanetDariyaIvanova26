@@ -54,10 +54,17 @@ public class RequestDetailPage {
         driver.findElement(ADD_COMMENT_BUTTON).click();
     }
 
-    public void enterComment(String text) {
+    public void addComment(String text) {
+
         wait.until(ExpectedConditions.elementToBeClickable(ADD_COMMENT_BUTTON)).click();
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(COMMENT_TEXT)).sendKeys(text);
+
         wait.until(ExpectedConditions.elementToBeClickable(SUBMIT_COMMENT)).click();
+    }
+
+    public void waitForComment(String text) {
+        wait.until(driver -> comments().contains(text));
     }
 
     public List<String> comments() {
